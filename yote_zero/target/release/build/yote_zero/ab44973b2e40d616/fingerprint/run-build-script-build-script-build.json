@@ -1,0 +1,1 @@
+{"rustc":2646949812120272686,"features":"","declared_features":"","target":0,"profile":0,"path":0,"deps":[[2598838750769801292,"build_script_build",false,12221908446781259271]],"local":[{"RerunIfChanged":{"output":"release/build/yote_zero/ab44973b2e40d616/run/stdout","paths":["/home/toxic/src/libzero_transport.so"]}}],"rustflags":[],"config":0,"compile_kind":0}

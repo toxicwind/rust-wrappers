@@ -1,0 +1,13 @@
+[package]
+name = "yote_zero"
+version = "0.1.0"
+edition = "2021"
+description = "Zero-Transport Shared-Memory Pipeline wrapper for Yote"
+
+[[bin]]
+name = "yote_zero"
+path = "src/main.rs"
+
+[dependencies]
+libc = "0.2"
+anyhow = "1.0"
