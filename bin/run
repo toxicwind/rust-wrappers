@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# rust-wrappers — primary operation: build/run the yote_zero
+# (Zero-Transport Shared-Memory Pipeline wrapper) Rust binary.
+#
+# NOTE: /home/toxic/estate/Cargo.toml is currently a broken cargo workspace
+# (member crates/tau-ast is MISSING), so `cargo` run from inside this repo
+# walks up and fails. Until that estate root is fixed, bin/run reports the
+# blocker clearly and points at bin/check for the source-integrity gate.
+#
+# Usage:
+#   bin/run          # build+run yote_zero (blocked by estate workspace for now)
+#   bin/run check    # source-integrity gate
+set -euo pipefail
+cd "$(dirname "$0")/.."
+CARGO="${CARGO:-cargo}"
+
+if [ "${1:-}" = "check" ]; then
+  exec ./bin/check
+fi
+
+if [ ! -f "yote_zero/Cargo.toml" ]; then
+  echo "FAIL: yote_zero/Cargo.toml missing"; exit 1
+fi
+
+# Detect the broken estate parent workspace
+if [ -f /home/toxic/estate/Cargo.toml ] && [ ! -d /home/toxic/estate/crates/tau-ast ]; then
+  echo "rust-wrappers: estate Cargo workspace is broken (crates/tau-ast missing at"
+  echo "               /home/toxic/estate/crates/tau-ast). cargo run from this repo"
+  echo "               resolves the parent workspace. Fix the estate root, or run"
+  echo "               in a copied-out checkout. Source-integrity gate: bin/check"
+  exit 2
+fi
+
+exec "$CARGO" run --manifest-path yote_zero/Cargo.toml -- "$@"
