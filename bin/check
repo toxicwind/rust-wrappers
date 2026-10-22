@@ -10,6 +10,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 echo "== rust-wrappers check: start =="
+export RUN_FAST_ACTIVE=0   # avoid bash-2s-shim unbound-var wrapping of cargo
 CARGO="${CARGO:-cargo}"
 
 for f in yote_zero/Cargo.toml yote_zero/src/main.rs; do
