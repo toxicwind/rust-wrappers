@@ -1,0 +1,25 @@
+{
+  "name": "yote_zero",
+  "version": "0.1.0",
+  "description": "Estate product managed via Bun and Biome",
+  "scripts": {
+    "dev": "bun --hot run yote_zero",
+    "test": "bun test",
+    "typecheck": "tsgo --noEmit -p tsconfig.json",
+    "lint": "biome lint .",
+    "fmt": "biome format --write .",
+    "build": "bun build yote_zero"
+  },
+  "bin": {
+    "yote_zero": "./bin/yote_zero.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.7.0",
+    "@types/bun": "latest",
+    "bun-types": "latest",
+    "typescript": "^5.3.3",
+    "tsgo": "^0.0.1"
+  },
+  "type": "module",
+  "private": true
+}
